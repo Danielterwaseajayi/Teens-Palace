@@ -1,0 +1,95 @@
+/* --- Base Styles --- */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f8fafc; /* soft gray */
+  color: #222;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --- Header --- */
+.site-header {
+  background: #1e3a8a; /* mature navy */
+  color: white;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.site-header .logo {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-block;
+  background: #14b8a6; /* teal accent */
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  transform: scale(1.05);
+  background: #0d9488; /* darker teal */
+}
+
+/* --- Section Titles --- */
+.section-title {
+  color: #1e3a8a; /* navy */
+  margin-bottom: 25px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+  background: linear-gradient(to right, #1e3a8a, #0d9488);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+.hero-section h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+.hero-section p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+/* --- Teen Events --- */
+.teen-events {
+  background: #f0fdf9; /* soft teal-tinted background */
+  padding: 40px 20px;
+  border-radius: 10px;
+  margin: 40px 0;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
+/* --- Social Icons --- */
+.social-icons a {
+  font-size: 1.8rem;
+  margin: 0 12px;
+  color: #14b8a6;
+  transition: color 0.3s;
+}
+.social-icons a:hover {
+  color: #f97316; /* coral highlight */
+}
+
+/* --- Footer --- */
+.site-footer {
+  background: #1e3a8a;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+}

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Revival Gospel Ministries</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* === Base Styles === */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8fafc;
+      color: #222;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+
+    /* === Header === */
+    .site-header {
+      background: #0f172a; /* Deep navy */
+      color: white;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .site-header .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin: 0;
+    }
+    .site-header .logo a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+    .logo-img {
+      height: 55px;
+      width: auto;
+      border-radius: 6px;
+    }
+    .nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 0;
+      margin: 10px 0 0;
+    }
+    .nav ul li a {
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .nav ul li a:hover {
+      color: #facc15; /* Gold highlight */
+    }
+
+    /* === Hero Section === */
+    .hero-section {
+      background: linear-gradient(rgba(15,23,42,0.85), rgba(15,23,42,0.85)), url('{{ url_for("static", filename="images/teens_bg.jpg") }}') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      border-radius: 10px;
+      margin: 40px 0;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+    .hero-section h2 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
+    .hero-section p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    /* === Buttons === */
+    .btn {
+      display: inline-block;
+      background: #f39c12; /* Gold button */
+      color: white;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      transform: scale(1.08);
+      background: #d97706;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* === Section Titles === */
+    .section-title {
+      color: #0f172a;
+      margin-bottom: 25px;
+      font-weight: 600;
+      text-align: center;
+      font-size: 1.8rem;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      width: 60px;
+      height: 3px;
+      background: #f39c12; /* Gold underline */
+      display: block;
+      margin: 8px auto 0;
+      border-radius: 5px;
+    }
+
+    /* === Cards === */
+    .services-grid, 
+    .leaders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    .service-card, 
+    .leader-card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card:hover, 
+    .leader-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+    .service-card i {
+      margin-bottom: 15px;
+      color: #0f172a;
+    }
+    .leader-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+    .leader-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* === Venue Section === */
+    .venue {
+      background: #facc15;
+      color: #0f172a;
+      text-align: center;
+      padding: 30px 20px;
+      border-radius: 12px;
+      margin: 40px auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+    .venue h3 {
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .venue p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .venue .tagline {
+      margin-top: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 1.2rem;
+    }
+
+    /* === Social Icons === */
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      margin-top: 15px;
+      gap: 20px;
+    }
+    .social-icons a {
+      font-size: 1.8rem;
+      color: #f39c12;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .social-icons a:hover {
+      color: #14b8a6;
+      transform: scale(1.2);
+    }
+
+    /* === Footer === */
+    .site-footer {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+      margin-top: 50px;
+      font-size: 0.9rem;
+    }
+    .site-footer p {
+      margin: 5px 0;
+    }
+    .site-footer .footer-links {
+      margin-top: 10px;
+    }
+    .site-footer .footer-links a {
+      color: #facc15;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    .site-footer .footer-links a:hover {
+      color: #14b8a6;
+    }
+
+    /* === Responsive Adjustments === */
+    @media (max-width: 768px) {
+      .hero-section h2 {
+        font-size: 2rem;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo">
+        <a href="#hero">
+          <img src="{{ url_for('static', filename='images/ctc_logo.png') }}" alt="CTC Logo" class="logo-img" />
+          <span>Global Revival Gospel Ministries</span>
+        </a>
+      </h1>
+      <nav class="nav">
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#leaders">Leadership</a></li>
+          <li><a href="#connect">Connect</a></li>
+       </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="container">
+        <h2>Welcome to Global Revival Gospel Ministries: Teens Palace</h2>
+        <p>Equipping And Perfecting Teenagers for Impactful Ministry</p>
+        <a href="#about" class="btn">Learn More</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Us</h2>
+        <p>
+          Global Revival Gospel Ministries, also known as the Christian Teaching Centre, was founded in April 1987 in Nigeria by <strong>Dr. John Esuga Akpami</strong>.
+        </p>
+        <p>
+          Dr. Akpami is a retired medical practitioner and holds a doctorate in Pastoral Theology. He leads the Global Revival Bible Training Institute and the Christian Teaching Centre Academy, impacting lives through education, mentorship, and media outreach.
+        </p>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+      <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+          <article class="service-card">
+            <i class="fa-solid fa-church fa-2x"></i>
+            <h3>Sunday Worship</h3>
+            <p>A joyful gathering of believers for praise, worship, and the teaching of God’s Word. Every Sunday by 8am.</p>
+          </article>
+          <article class="service-card">
+            <i class="fa-solid fa-book-bible fa-2x"></i>
+            <h3>Bible Study</h3>
+            <p>Interactive sessions exploring Scripture for spiritual growth and practical wisdom. Wednesdays at 5pm.</p>
+          </article>
+          <article class="service-card">
+            <i class="fa-solid fa-praying-hands fa-2x"></i>
+            <h3>Prayer Meetings</h3>
+            <p>United intercession for families, communities, and nations. Saturdays at 12pm.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leaders Section -->
+    <section id="leaders">
+      <div class="container">
+        <h2 class="section-title">Meet Our Leaders</h2>
+        <div class="leaders-grid">
+          <article class="leader-card">
+            <img src="{{ url_for('static', filename='images/pastor_sam.jpg') }}" alt="Rev and Mrs Samuel William" />
+            <h3>Rev & Mrs Samuel William</h3>
+            <p>Dedicated shepherds leading with grace, humility, and a heart for discipleship.</p>
+          </article>
+          <article class="leader-card">
+            <img src="{{ url_for('static', filename='images/dr_john_apkami.jpg') }}" alt="Dr and Dr (Mrs) John Akpami" />
+            <h3>Dr & Dr (Mrs) John Akpami</h3>
+            <p>Visionary overseers committed to excellence, spiritual maturity, and kingdom advancement.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section class="venue">
+      <div class="container">
+        <h3>Venue:</h3>
+        <p>CTC Teens Palace, Inside CTC Academy School,<br>Off NTC/Muchia Round About, Sabon Gari, Zaria, Kaduna State.</p>
+        <p class="tagline">WE ARE JESUS' ICON</p>
+      </div>
+    </section>
+
+    <!-- Connect Section -->
+    <section id="connect" class="social-section">
+      <div class="container">
+        <h2 class="section-title">Connect With Us</h2>
+        <p>Stay connected and be part of our community:</p>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/JesusIcons" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="https://vm.tiktok.com/ZSAD8fd4F/" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://www.instagram.com/ctcfcteens?igsh=YzljYTk1ODg3Zg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://t.me/teenschuchctcfchq" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+        </div>
+      </div>
+    </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; {{ current_year }} Global Revival Gospel Ministries. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#about">About</a> | 
+        <a href="#services">Services</a> | 
+        <a href="#leaders">Leadership</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
